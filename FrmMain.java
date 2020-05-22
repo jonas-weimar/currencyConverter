@@ -27,6 +27,7 @@ public class FrmMain extends JFrame {
     private JComboBox<Currency> baseCBX = new JComboBox<Currency>();
     private JComboBox<Currency> toCBX = new JComboBox<Currency>();
     private JSlider baseSlider = new JSlider(JSlider.HORIZONTAL);
+    private JTextField altInputField = new JTextField("1.0");
     private JLabel baseCurrencyValueLabel = new JLabel();
     private JLabel toCurrencyValueLabel = new JLabel();
     private JButton calculationButton = new JButton( "Calc" );
@@ -83,7 +84,7 @@ public class FrmMain extends JFrame {
 
         // add eventlisteners for calculation button and
         // base currency slider
-        baseSlider.addChangeListener( new BaseCurrencySliderEventListener() );
+        // baseSlider.addChangeListener( new BaseCurrencySliderEventListener() );
         calculationButton.addActionListener( new CalculationButtonEventListener() );
 
 
@@ -94,8 +95,9 @@ public class FrmMain extends JFrame {
 
         // add basecurrencypanel items to its
         // parent panel
-        baseCurrencyPanel.add( baseSlider );
-        baseCurrencyPanel.add( baseCurrencyValueLabel );
+        baseCurrencyPanel.add( altInputField );
+        // baseCurrencyPanel.add( baseSlider );
+        // baseCurrencyPanel.add( baseCurrencyValueLabel );
         baseCurrencyPanel.add( baseCBX );
 
 
@@ -149,7 +151,8 @@ public class FrmMain extends JFrame {
                 // calculate response * set value and set value
                 // to the toCurrencyValueLabel via .setText()
                 double rawResponse = res.get( toCurrency.getSymbol() ) *
-                        Integer.parseInt( baseCurrencyValueLabel.getText() );
+                        // Integer.parseInt( baseCurrencyValueLabel.getText() );
+                        Double.parseDouble( altInputField.getText() );
 
                 toCurrencyValueLabel.setText( String.valueOf( rawResponse ) );
 
